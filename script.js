@@ -1,5 +1,6 @@
 // パスワード設定（実際の使用時は変更してください）
-const CORRECT_PASSWORD = '1234';
+const CORRECT_PASSWORD = '2142';
+const TARGET_URL = 'https://note.com/preview/n4281509cae94?prev_access_key=980226065ccc78ba978166fcffc64627';
 
 // DOM要素の取得
 const passwordScreen = document.getElementById('passwordScreen');
@@ -9,6 +10,13 @@ const passwordInput = document.getElementById('passwordInput');
 const submitBtn = document.getElementById('submitBtn');
 const errorMessage = document.getElementById('errorMessage');
 const loadingSpinner = document.getElementById('loadingSpinner');
+
+// 全角数字を半角に変換する関数
+function normalizePassword(password) {
+    return password.replace(/[０-９]/g, function(match) {
+        return String.fromCharCode(match.charCodeAt(0) - 0xFEE0);
+    });
+}
 
 // パスワードフォームの送信処理
 passwordForm.addEventListener('submit', function(e) {
@@ -24,10 +32,13 @@ passwordForm.addEventListener('submit', function(e) {
     // ローディング状態を表示
     setLoadingState(true);
     
+    // パスワードを正規化（全角→半角変換）
+    const normalizedPassword = normalizePassword(enteredPassword);
+    
     // パスワード検証をシミュレート（実際の使用時はサーバーサイドで検証）
     setTimeout(() => {
-        if (enteredPassword === CORRECT_PASSWORD) {
-            unlockNote();
+        if (normalizedPassword === CORRECT_PASSWORD) {
+            redirectToNote();
         } else {
             showError('パスワードが正しくありません');
             setLoadingState(false);
@@ -46,8 +57,21 @@ passwordInput.addEventListener('keypress', function(e) {
 function showError(message) {
     errorMessage.textContent = message;
     errorMessage.classList.add('show');
+    errorMessage.style.color = '#e74c3c';
     
     // 3秒後にエラーメッセージを非表示
+    setTimeout(() => {
+        errorMessage.classList.remove('show');
+    }, 3000);
+}
+
+// 成功メッセージを表示
+function showSuccessMessage(message) {
+    errorMessage.textContent = message;
+    errorMessage.classList.add('show');
+    errorMessage.style.color = '#27ae60';
+    
+    // 3秒後にメッセージを非表示
     setTimeout(() => {
         errorMessage.classList.remove('show');
     }, 3000);
@@ -66,7 +90,24 @@ function setLoadingState(isLoading) {
     }
 }
 
-// Noteのロック解除
+// Noteページにリダイレクト
+function redirectToNote() {
+    // ローディング状態を解除
+    setLoadingState(false);
+    
+    // 成功メッセージを表示
+    console.log('パスワードが正しく入力されました。noteページにリダイレクトします...');
+    
+    // リダイレクトメッセージを表示
+    showSuccessMessage('認証成功！noteページに移動します...');
+    
+    // 1秒後にnoteページにリダイレクト
+    setTimeout(() => {
+        window.location.href = TARGET_URL;
+    }, 1000);
+}
+
+// Noteのロック解除（デモ用）
 function unlockNote() {
     // パスワード画面を非表示
     passwordScreen.style.display = 'none';
