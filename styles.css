@@ -64,7 +64,7 @@ body::before {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border-radius: 20px;
-    padding: 60px 40px;
+    padding: 40px 40px 60px 40px;
     text-align: center;
     box-shadow: 0 20px 40px rgba(255, 182, 193, 0.3);
     border: 2px solid rgba(255, 182, 193, 0.4);
@@ -126,22 +126,23 @@ body::before {
     animation: sakuraFloat 3s ease-in-out infinite;
     position: relative;
     width: 100%;
+    margin-top: -20px;
 }
 
 .main-image {
     width: 100%;
-    max-width: 400px;
+    max-width: 100%;
     height: auto;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4);
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(255, 105, 180, 0.5);
     animation: imageGlow 2s ease-in-out infinite alternate;
-    margin: 0 auto;
+    margin: 0 auto 20px auto;
     display: block;
 }
 
 @keyframes imageGlow {
-    0% { box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4); }
-    100% { box-shadow: 0 12px 30px rgba(255, 105, 180, 0.7); }
+    0% { box-shadow: 0 12px 30px rgba(255, 105, 180, 0.5); }
+    100% { box-shadow: 0 16px 40px rgba(255, 105, 180, 0.8); }
 }
 
 .icon::before {
@@ -434,11 +435,11 @@ h1 {
     }
     
     .password-screen {
-        padding: 40px 25px;
+        padding: 30px 25px 50px 25px;
     }
     
     .main-image {
-        max-width: 350px;
+        max-width: 100%;
     }
     
     .note-header {
@@ -463,11 +464,11 @@ h1 {
 
 @media (max-width: 480px) {
     .password-screen {
-        padding: 30px 20px;
+        padding: 25px 20px 45px 20px;
     }
     
     .main-image {
-        max-width: 280px;
+        max-width: 100%;
     }
     
     h1 {
