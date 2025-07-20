@@ -98,13 +98,30 @@ function redirectToNote() {
     // 成功メッセージを表示
     console.log('パスワードが正しく入力されました。noteページにリダイレクトします...');
     
-    // リダイレクトメッセージを表示
-    showSuccessMessage('認証成功！noteページに移動します...');
+    // お祝いアニメーションを表示
+    showCelebrationAnimation();
     
-    // 1秒後にnoteページにリダイレクト
+    // リダイレクトメッセージを表示
+    showSuccessMessage('🌸 認証成功！noteページに移動します... ✨');
+    
+    // 2秒後にnoteページにリダイレクト
     setTimeout(() => {
         window.location.href = TARGET_URL;
-    }, 1000);
+    }, 2000);
+}
+
+// お祝いアニメーションを表示
+function showCelebrationAnimation() {
+    const celebration = document.createElement('div');
+    celebration.className = 'success-celebration';
+    document.body.appendChild(celebration);
+    
+    // 2秒後にアニメーションを削除
+    setTimeout(() => {
+        if (celebration.parentNode) {
+            celebration.parentNode.removeChild(celebration);
+        }
+    }, 2000);
 }
 
 // Noteのロック解除（デモ用）

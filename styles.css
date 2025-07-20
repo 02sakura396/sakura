@@ -6,12 +6,48 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #ffb6c1 0%, #ffc0cb 25%, #ffb6c1 50%, #ffc0cb 75%, #ffb6c1 100%);
+    background-size: 400% 400%;
+    animation: sakuraGradient 8s ease-in-out infinite;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #333;
+    position: relative;
+    overflow: hidden;
+}
+
+/* さくらグラデーションアニメーション */
+@keyframes sakuraGradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* さくらの花びらアニメーション */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #ff69b4, transparent),
+        radial-gradient(2px 2px at 40px 70px, #ffb6c1, transparent),
+        radial-gradient(1px 1px at 90px 40px, #ffc0cb, transparent),
+        radial-gradient(1px 1px at 130px 80px, #ff69b4, transparent),
+        radial-gradient(2px 2px at 160px 30px, #ffb6c1, transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: sakuraPetals 20s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes sakuraPetals {
+    0% { transform: translateY(-100vh) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
 }
 
 .container {
@@ -19,6 +55,8 @@ body {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
+    position: relative;
+    z-index: 10;
 }
 
 /* パスワード画面のスタイル */
@@ -28,31 +66,115 @@ body {
     border-radius: 20px;
     padding: 60px 40px;
     text-align: center;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(255, 182, 193, 0.3);
+    border: 2px solid rgba(255, 182, 193, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+/* パスワード画面の装飾 */
+.password-screen::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-conic-gradient(
+        from 0deg at 50% 50%,
+        transparent 0deg,
+        rgba(255, 182, 193, 0.1) 10deg,
+        transparent 20deg
+    );
+    animation: rotate 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .content {
     max-width: 400px;
     margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* 可愛い女の子のイラスト風装飾 */
+.content::before {
+    content: '👧🌸';
+    position: absolute;
+    top: -30px;
+    right: -20px;
+    font-size: 2rem;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+.content::after {
+    content: '🌸✨';
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    font-size: 1.5rem;
+    animation: bounce 2s ease-in-out infinite 0.5s;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
 }
 
 .icon {
     font-size: 4rem;
     margin-bottom: 20px;
-    animation: pulse 2s infinite;
+    animation: sakuraFloat 3s ease-in-out infinite;
+    position: relative;
 }
 
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
+.icon::before {
+    content: '🌸';
+    position: absolute;
+    top: -10px;
+    left: -20px;
+    font-size: 1.5rem;
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+.icon::after {
+    content: '✨';
+    position: absolute;
+    bottom: -10px;
+    right: -20px;
+    font-size: 1rem;
+    animation: sparkle 2s ease-in-out infinite 1s;
+}
+
+@keyframes sakuraFloat {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.05) rotate(2deg); }
+    50% { transform: scale(1.1) rotate(0deg); }
+    75% { transform: scale(1.05) rotate(-2deg); }
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 0.5; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
 }
 
 h1 {
     font-size: 2rem;
     margin-bottom: 15px;
-    color: #2c3e50;
+    color: #d63384;
     font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(255, 182, 193, 0.3);
+    animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow {
+    0% { text-shadow: 2px 2px 4px rgba(255, 182, 193, 0.3); }
+    100% { text-shadow: 2px 2px 8px rgba(255, 105, 180, 0.5); }
 }
 
 .password-screen p {
@@ -89,14 +211,14 @@ h1 {
 
 #passwordInput:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #ff69b4;
     background: white;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.2);
 }
 
 .submit-btn {
     padding: 15px 30px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #ff69b4 0%, #ff1493 50%, #dc143c 100%);
     color: white;
     border: none;
     border-radius: 12px;
@@ -106,11 +228,28 @@ h1 {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+}
+
+.submit-btn::before {
+    content: '🌸';
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    animation: buttonSparkle 1.5s ease-in-out infinite;
+}
+
+@keyframes buttonSparkle {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; transform: translateY(-50%) scale(1.2); }
 }
 
 .submit-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 10px 25px rgba(255, 105, 180, 0.6);
+    background: linear-gradient(135deg, #ff1493 0%, #ff69b4 50%, #ff69b4 100%);
 }
 
 .submit-btn:active {
@@ -315,5 +454,87 @@ h1 {
     
     .submit-btn {
         padding: 12px 25px;
+    }
+} 
+
+/* 追加のさくらアニメーション */
+.password-screen .content {
+    animation: gentleFloat 4s ease-in-out infinite;
+}
+
+@keyframes gentleFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+/* さくらの花びらのパーティクル効果 */
+.password-screen::after {
+    content: '🌸 ✨ 🌸 ✨ 🌸';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 1.5rem;
+    opacity: 0.3;
+    animation: floatingPetals 6s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes floatingPetals {
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+    25% { transform: translateY(-10px) rotate(90deg); opacity: 0.5; }
+    50% { transform: translateY(-5px) rotate(180deg); opacity: 0.7; }
+    75% { transform: translateY(-15px) rotate(270deg); opacity: 0.4; }
+}
+
+/* ホバー効果でより多くのさくらを表示 */
+.password-screen:hover::after {
+    animation-duration: 3s;
+    opacity: 0.6;
+}
+
+/* パスワード入力時のキラキラ効果 */
+#passwordInput:focus::placeholder {
+    color: #ff69b4;
+}
+
+/* 成功時のお祝いアニメーション */
+.success-celebration {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.success-celebration::before {
+    content: '🎉 🌸 ✨ 💖 🌸 ✨ 🎉';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    animation: celebrate 2s ease-out;
+}
+
+@keyframes celebrate {
+    0% { 
+        opacity: 0; 
+        transform: translate(-50%, -50%) scale(0.5); 
+    }
+    50% { 
+        opacity: 1; 
+        transform: translate(-50%, -50%) scale(1.2); 
+    }
+    100% { 
+        opacity: 0; 
+        transform: translate(-50%, -50%) scale(1) rotate(360deg); 
     }
 } 
