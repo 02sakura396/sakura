@@ -102,7 +102,7 @@ function redirectToNote() {
     showCelebrationAnimation();
     
     // リダイレクトメッセージを表示
-    showSuccessMessage('🌸 認証成功！noteページに移動します... ✨');
+    showSuccessMessage('🎉 ステージクリア！noteページに移動します... 🌸');
     
     // 2秒後にnoteページにリダイレクト
     setTimeout(() => {
