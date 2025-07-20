@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #ffb6c1 0%, #ffc0cb 25%, #ffb6c1 50%, #ffc0cb 75%, #ffb6c1 100%);
+    background: linear-gradient(135deg, #ffc0cb 0%, #ffb6c1 25%, #ff91a4 50%, #ffb6c1 75%, #ffc0cb 100%);
     background-size: 400% 400%;
     animation: sakuraGradient 8s ease-in-out infinite;
     min-height: 100vh;
@@ -33,11 +33,11 @@ body::before {
     width: 100%;
     height: 100%;
     background-image: 
-        radial-gradient(2px 2px at 20px 30px, #ff69b4, transparent),
+        radial-gradient(3px 3px at 20px 30px, #ff91a4, transparent),
         radial-gradient(2px 2px at 40px 70px, #ffb6c1, transparent),
-        radial-gradient(1px 1px at 90px 40px, #ffc0cb, transparent),
-        radial-gradient(1px 1px at 130px 80px, #ff69b4, transparent),
-        radial-gradient(2px 2px at 160px 30px, #ffb6c1, transparent);
+        radial-gradient(2px 2px at 90px 40px, #ff91a4, transparent),
+        radial-gradient(3px 3px at 130px 80px, #ffb6c1, transparent),
+        radial-gradient(2px 2px at 160px 30px, #ff91a4, transparent);
     background-repeat: repeat;
     background-size: 200px 100px;
     animation: sakuraPetals 20s linear infinite;
@@ -164,30 +164,33 @@ body::before {
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin-bottom: 15px;
-    color: #d63384;
+    color: #2c3e50;
     font-weight: 600;
-    text-shadow: 2px 2px 4px rgba(255, 182, 193, 0.3);
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
     animation: textGlow 2s ease-in-out infinite alternate;
+    line-height: 1.4;
 }
 
 @keyframes textGlow {
-    0% { text-shadow: 2px 2px 4px rgba(255, 182, 193, 0.3); }
-    100% { text-shadow: 2px 2px 8px rgba(255, 105, 180, 0.5); }
+    0% { text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8); }
+    100% { text-shadow: 2px 2px 8px rgba(255, 255, 255, 1); }
 }
 
 .password-screen p {
-    color: #7f8c8d;
+    color: #2c3e50;
     margin-bottom: 15px;
     font-size: 1.1rem;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
 }
 
 .password-hint {
-    color: #95a5a6 !important;
+    color: #5a6c7d !important;
     font-size: 0.9rem !important;
     margin-bottom: 30px !important;
     font-style: italic;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6) !important;
 }
 
 .password-form {
